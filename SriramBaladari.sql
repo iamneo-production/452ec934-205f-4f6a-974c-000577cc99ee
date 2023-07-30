@@ -1,5 +1,3 @@
---Retrieving the data from the bank_transaction_table
-select * from bank_transaction;
 -- Describing the bank_transaction_table
 desc BANK_TRANSACTION;
 
@@ -8,14 +6,14 @@ SELECT EXTRACT(YEAR FROM "DATE") AS year,
        MAX(CAST(WITHDRAWAL_AMT AS NUMBER(10,2) DEFAULT NULL ON CONVERSION ERROR)) AS highest_debited_amount_from_each_year
 FROM BANK_TRANSACTION
 GROUP BY EXTRACT(YEAR FROM "DATE")
-ORDER BY year;
+ORDER BY year ASC;
 
 -- 2. Query to find the lowest amount debited from the bank each year
 SELECT EXTRACT(YEAR FROM "DATE") AS year,
        MIN(CAST(WITHDRAWAL_AMT AS NUMBER(10,2) DEFAULT NULL ON CONVERSION ERROR)) AS lowest_debited_amount_from_each_year
 FROM BANK_TRANSACTION
 GROUP BY EXTRACT(YEAR FROM "DATE")
-ORDER BY year;
+ORDER BY year ASC;
 
 -- 3. Query to find the 5th highest withdrawal amount at each year
 WITH processed_transactions AS (
@@ -39,7 +37,7 @@ FROM
 SELECT year, withdrawal_amount AS fifth_highest_withdrawal_amount_at_each_year
 FROM ranked_transactions
 WHERE rnk = 5
-ORDER BY year;
+ORDER BY year ASC;
 
 
 -- 4. Query to find the withdrawal transaction between 5-May-2018 and 7-Mar-2019
