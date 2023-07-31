@@ -6,7 +6,7 @@ SELECT EXTRACT(YEAR FROM "DATE") AS year,
        MAX(CAST(WITHDRAWAL_AMT AS NUMBER(10,2) DEFAULT NULL ON CONVERSION ERROR)) AS highest_debited_amount_from_each_year
 FROM BANK_TRANSACTION
 GROUP BY EXTRACT(YEAR FROM "DATE")
-ORDER BY year ASC;
+ORDER BY year DESC;
 
 -- 2. Query to find the lowest amount debited from the bank each year
 SELECT EXTRACT(YEAR FROM "DATE") AS year,
